@@ -6,7 +6,7 @@ var exibir = (event)=>{
     form.addEventListener('submit' , (event) =>{
         event.preventDefault();
     })
-    
+     
 
     console.log(`seu nome: ${nome} \nsua data de nascimento: ${data} `);
 }
