@@ -3,12 +3,13 @@
 class Pessoa {
     _nome = String ;
     _data = String ;
-    _id = geradorDeId(0,10000) ;
+    _id = geradorDeId(0,1000) ;
 
     constructor (nome, data){
         this._nome = nome;
         this._data = data;
     }
+
 }
 
 
@@ -84,21 +85,56 @@ var salvar = (event) =>{
 function exibir  (array) {
     const container = document.querySelector('#Container');
     
-    array.map( elemento  =>{
+    array.map( ( elemento , indece)  =>{
         var card = document.createElement('div');
         card.classList.add('card');
+        
+        
         
         var nome = document.createElement('p');
         nome.classList.add('Nome');
         nome.textContent = elemento._nome;
-    
+        
         var data = document.createElement('p');
         data.classList.add('Data');
         data.textContent = elemento._data;
         
+        var buttonEdit = document.createElement('button');
+        buttonEdit.textContent = 'Editar informações';
+
+        var buttonRemove = document.createElement('button');
+        buttonRemove.textContent = "Remover pessoa";
+        
+        
         card.appendChild(nome);
         card.appendChild(data);
+        card.appendChild(buttonEdit);
+        card.appendChild(buttonRemove)
         container.appendChild(card);
+        
+        
+        // Ações de cada card
+        
+        // Editar informação
+        buttonEdit.addEventListener('click', () =>{
+
+            alert('Escreva suas novas informações!');
+            var novoNome = prompt('Escreva seu nome corretamente!'); 
+            var novaData = prompt('Escreva sua data correta!');
+
+
+            data.textContent = novaData;
+            nome.textContent = novoNome;
+        })
+
+        //Remover card
+
+        buttonRemove.addEventListener('click', () =>{
+            card.remove();
+        })
+
+
+
     }) 
 }
 
