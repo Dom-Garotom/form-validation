@@ -1,0 +1,11 @@
+.card{
+    background-color: cyan;
+    width: 150px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.Nome,.Data{
+    color: black;
+}
