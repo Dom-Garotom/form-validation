@@ -8,22 +8,42 @@
 </head>
 <body>
 
+    <header>
+        <h1>Aniversários</h1>
+    </header>
+
+
+    <div class="forms">
+        <form action="">
+            <label for="">Nome da pessoa ( <em>campo obrigatório</em> )</label><br>
+            <input type="text" placeholder="Nome completo da pessoa" maxlength="120" minlength="3" required pattern="[a-zA-z]+$" name="" id="inputName"><br>  
+            
+            <label for="">Data de nascimento ( <em>campo obrigatório</em> )</label><br>
+            <input type="date"  required max="9999-12-31" name="" id="inputDate"><br>
     
-    <h1>Preencha o formulário abaixo</h1>
-
-    <form action="">
-        <label for="">Nome</label>
-        <input type="text" maxlength="120" minlength="3" required pattern="[a-zA-z]+$" name="" id="inputName">
+            <button type="submit" onclick="salvar()">Salvar</button>
+        </form>
         
-        <label for="">Data de nascimento</label>
-        <input type="date" required max="9999-12-31" name="" id="inputDate">
-
-        <button type="submit" onclick="salvar()">Salvar</button>
-    </form>
-
-
-    <div id="Container">
+        
     </div>
+
+
+    <div class="titulos">
+        <p id="nomeTitulo">Nome</p>
+        <p id="dataTitulo">Data de nascimento</p>
+        <p id="acoesTitulo">Ações</p>
+    </div>
+
+    <div class="lista">
+        
+
+        <table>  
+            <tbody  id="Container" >
+            </tbody>
+        </table>
+   
+    </div>
+
 
     <script src="script.js"></script>
 </body>

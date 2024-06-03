@@ -86,30 +86,35 @@ function exibir  (array) {
     const container = document.querySelector('#Container');
     
     array.map( ( elemento , indece)  =>{
-        var card = document.createElement('div');
+        var card = document.createElement('tr');
         card.classList.add('card');
         
         
         
-        var nome = document.createElement('p');
+        var nome = document.createElement('td');
         nome.classList.add('Nome');
         nome.textContent = elemento._nome;
         
-        var data = document.createElement('p');
+        var data = document.createElement('td');
         data.classList.add('Data');
         data.textContent = elemento._data;
+
+        var acoes = document.createElement('td');
+        acoes.classList.add('acoes');
         
         var buttonEdit = document.createElement('button');
         buttonEdit.textContent = 'Editar informações';
+        buttonEdit.classList.add('edit');
 
         var buttonRemove = document.createElement('button');
         buttonRemove.textContent = "Remover pessoa";
-        
+        buttonRemove.classList.add('remove')
         
         card.appendChild(nome);
         card.appendChild(data);
-        card.appendChild(buttonEdit);
-        card.appendChild(buttonRemove)
+        card.appendChild(acoes);
+        acoes.appendChild(buttonEdit);
+        acoes.appendChild(buttonRemove)
         container.appendChild(card);
         
         
