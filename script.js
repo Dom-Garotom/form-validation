@@ -30,62 +30,68 @@ var addLocalStorage = (key, item ) => {
 
     // E mandamos para o local storage
     localStorage.setItem(key, JSON.stringify(listPerson));
-
-    return listPerson;
 }
 
 // Remover um item do local storage
 
-var ExcludeLocalStorage = (key, id ) => {
+var ExcludeLocalStorage = (key, elementoRemovido ) => {
 
     // Pega o array de valores já existente no local storage
     let listPerson = JSON.parse(localStorage.getItem(key));
 
-    // Filtra o array e retorna um novo array sem o elemento passado como parâmetro;
-    listPerson = listPerson.filter( elemento => elemento !== id)
+    let newArray = [];
+
+    if (typeof elementoRemovido  == 'string'){
+        console.log('string')
+
+    }
+
+    //salvamos um novo array com os elementos que passem no filtro
+    newArray = listPerson.filter( elemento =>  elemento._id !== elementoRemovido._id);
 
     
     // E mandamos para o local storage
-    localStorage.setItem(key, JSON.stringify(listPerson));
+    localStorage.setItem(key, JSON.stringify(newArray));
 
 }
 
 
-// Função que pega os valores dos inputs e agrupa eles em um objeto chamado pessoa
+    
+// Pega os valores dos inputs e previne o comportamento padrão do formulário
 
-var salvar = (event) =>{
+var form = document.querySelector('#form');
     
-    // Pega os valores dos inputs e previne o comportamento padrão do formulário
+form.addEventListener( 'submit' , (event) =>{
+    event.preventDefault();
 
-    var form = document.querySelector('form');
-    
-    form.addEventListener( 'submit' , (event) =>{
-        event.preventDefault();
-    })
-    
     var nome = document.getElementById('inputName').value;
     var data = document.getElementById('inputDate').value;
-
+    
     // Cria um objeto pessoa com os valores do input;
-
+    
     var pessoa =  new Pessoa(nome, data);
-
+    
     // Salva os valores no local storage
+    
+    addLocalStorage("Pessoas", pessoa);
 
-    var arrayDeElementos = addLocalStorage("Pessoas", pessoa);
-
-    // Exibe os valores na tela
-    exibir(arrayDeElementos)
-
-
-}
-
+        
+        
+        
+        
+    excluir()
+    exibir()
+})
+    
+    
 // função que cria os elemntos Dom e os exibe na tela com os valores de cada item da lista
-
-function exibir  (array) {
+    
+    
+function exibir  () {
+    let array = JSON.parse(localStorage.getItem('Pessoas'))
     const container = document.querySelector('#Container');
     
-    array.map( ( elemento , indece)  =>{
+    array.map( ( elemento ,)  =>{
         var card = document.createElement('tr');
         card.classList.add('card');
         
@@ -136,6 +142,7 @@ function exibir  (array) {
 
         buttonRemove.addEventListener('click', () =>{
             card.remove();
+            ExcludeLocalStorage('Pessoas', elemento)
         })
 
 
@@ -144,24 +151,10 @@ function exibir  (array) {
 }
 
 
-// Função para excluri todos os elementos da tela  em teste
+// Função para excluri todos os elementos da tela 
 var excluir = () =>{
     const container = document.querySelector('#Container');
-    const card = document.querySelectorAll('.card');
-    const nome = document.querySelectorAll('.Nome');
-    const data = document.querySelectorAll('.Data');
-
-   
-
-    if (card.length === 0){
-
-    } else {
-        card.forEach( (elemento) => {
-            nome.parentNode.removeChild(nome);
-            elemento.removeChild(data);
-            elemento.parentNode.removeChild(elemento)
-        })
-    }
+    container.innerHTML = '';
 }
 
 

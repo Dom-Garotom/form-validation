@@ -128,3 +128,7 @@ td{
 .remove:hover{
     background-color: #ed5f8e4d;
 }
+
+.escondido{
+    display: none;
+}
